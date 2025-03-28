@@ -2,27 +2,26 @@ export const navLinks = [
     {
       imgURL: '/assets/home.svg',
       route: '/',
-      label: 'Home',
-    },
-  
+      label: 'خانه',
+    },  
     {
       imgURL: '/assets/upcoming.svg',
       route: '/upcoming',
-      label: 'Upcoming',
+      label: 'در پیش',
     },
     {
       imgURL: '/assets/previous.svg',
       route: '/previous',
-      label: 'Previous',
+      label: 'گذشته',
     },
     {
       imgURL: '/assets/recordings.svg',
       route: '/recordings',
-      label: 'Recordings',
+      label: 'ضبط شده',
     },
     {
       imgURL: '/assets/my-room.svg',
       route: '/my-room',
-      label: 'My Room',
+      label: 'اتاق من',
     },
   ];

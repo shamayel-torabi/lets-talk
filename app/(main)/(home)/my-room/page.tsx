@@ -56,20 +56,20 @@ const MyRoomPage = () => {
     // Page layout container
     <section className="flex size-full flex-col gap-10 text-white animate-fade-in">
       {/* Page title */}
-      <h1 className="text-xl font-bold lg:text-3xl">Personal Meeting Room</h1>
+      <h1 className="text-xl font-bold lg:text-3xl">اتاق نشست های خصوصی</h1>
       
       {/* Meeting details PersonalMeetingInfo */}
       <div className="flex w-full flex-col gap-8 xl:max-w-[900px]">
-        <PersonalMeetingInfo title="Topic" description={`${user?.firstName || user?.username || 'No Name Found'}'s Meeting Room`} />
-        <PersonalMeetingInfo title="Meeting ID" description={meetingId!} />
-        <PersonalMeetingInfo title="Invite Link" description={meetingLink} />
+        <PersonalMeetingInfo title="عنوان" description={` اتاق نشست های ${user?.firstName || user?.username || 'ناشناس'}`} />
+        <PersonalMeetingInfo title="شناسه نشست" description={meetingId!} />
+        <PersonalMeetingInfo title="پیوند دعوتنامه" description={meetingLink} />
       </div>
       
       {/* Action buttons */}
       <div className="flex gap-5">
         {/* Button to start the meeting */}
         <Button className="rounded bg-blue-700 p-4 hover:bg-blue-400 px-6" onClick={startRoom}>
-          Start Meeting
+          شروع نشست
         </Button>
         
         {/* Button to copy the invitation link */}
@@ -85,7 +85,7 @@ const MyRoomPage = () => {
         >
           {/* Copy icon */}
           <Image src="/assets/copy.svg" alt="copy" width={20} height={20} />
-          Copy Invitation
+          کپی دعوتنامه
         </Button>
       </div>
     </section>

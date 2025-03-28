@@ -37,7 +37,7 @@ const StatusBar = () => {
       <section className="flex flex-col gap-5 text-black items-center md:items-start">
           {}
           <h2 className="bg-blue-100 max-w-[273px] rounded-2xl p-4 text-center text-base font-light">
-          No Upcoming Meetings
+          هیچ نشست در پیش نیست
           </h2>
           {/* Render the DateAndTime component */}
           <DateAndTime/>
@@ -58,7 +58,7 @@ const StatusBar = () => {
     <section className="flex flex-col gap-5 text-black items-center md:items-start">
       {/* Display the upcoming meeting time */}
       <h2 className="bg-blue-100 max-w-[273px] rounded-2xl p-4 text-center text-base font-light">
-        Upcoming Meeting at:
+        نشست آتی در:
         <p className="text-lg font-semibold text-gray-800">{formattedDate}</p>
       </h2>
       {/* Render the DateAndTime component */}

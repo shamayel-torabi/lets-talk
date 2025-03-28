@@ -77,8 +77,8 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                     'No Description' // Default title
                   }
                   date={
-                    (meeting as Call).state?.startsAt?.toLocaleString() || // Use start time if available
-                    (meeting as CallRecording).start_time?.toLocaleString() // Use recording start time if available
+                    (meeting as Call).state?.startsAt?.toLocaleString('fa-IR') || // Use start time if available
+                    (meeting as CallRecording).start_time?.toLocaleString('fa-IR') // Use recording start time if available
                   }
                   isPreviousMeeting={type === 'ended'} // Indicate if meeting is previous
                   link={
@@ -87,7 +87,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                       : `${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${(meeting as Call).id}` // Construct meeting URL
                   }
                   buttonIcon1={type === 'recordings' ? '/assets/play.svg' : undefined} // Use play icon for recordings
-                  buttonText={type === 'recordings' ? 'Play' : 'Start'} // Use 'Play' for recordings, 'Start' otherwise
+                  buttonText={type === 'recordings' ? 'پخش' : 'شروع'} // Use 'Play' for recordings, 'Start' otherwise
                   handleClick={
                     type === 'recordings'
                       ? () => router.push(`${(meeting as CallRecording).url}`) // Navigate to recording URL
@@ -103,7 +103,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     // If no calls exist, display an alert message
     return (
         <Alert
-          title='No calls available' // Alert title
+          title='هیچ تماسی وجود ندارد' // Alert title
           iconUrl='/assets/no-calls.svg' // Alert icon
         />
       );

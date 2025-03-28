@@ -25,7 +25,7 @@ const Alert = ({ title, iconUrl }: AlertProps) => {
             </div>
 
             <Button asChild className="bg-gray-900 rounded-2xl">
-              <Link href="/">Back to Home</Link>
+              <Link href="/">بازگشت به خانه</Link>
             </Button>
           </div>
         </CardContent>

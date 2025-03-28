@@ -5,20 +5,33 @@ import { useEffect, useState } from "react";
 const DateAndTime = () => {
     const [time, setTime] = useState(() => {
         const now = new Date();
-        return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        return now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
       });
 
     const [date, setDate] = useState(() => {
     const now = new Date();
-    return new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(now);
+    return new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' }).format(now);
     });
 
     
     useEffect(() => {
         const intervalId = setInterval(() => {
           const now = new Date();
-          setTime(now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit'}));
-          setDate(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' }).format(now));
+          setTime(now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit'}));
+          const options: Intl.DateTimeFormatOptions = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          };
+          const dateTimeFormat = new Intl.DateTimeFormat("fa-IR", options);
+          
+          const parts = dateTimeFormat.formatToParts(now);
+          const partValues = parts.map((p) => p.value);
+          const dateStr = ` ${partValues[6]} ${partValues[5]} ${partValues[3]} ${partValues[4]}  ${partValues[2]} ${partValues[0]}`;
+          setDate(dateStr);
+
+          //setDate(new Intl.DateTimeFormat('fa-IR', { dateStyle: 'full' }).format(now));
 
         }, 1000); // Update every 1 sec
     

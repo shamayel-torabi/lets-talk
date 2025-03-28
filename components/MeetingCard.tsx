@@ -74,7 +74,7 @@ const MeetingCard = ({
               className="bg-gray-700"
               onClick={() => {
                 navigator.clipboard.writeText(link); // Copy link to clipboard
-                toast("Link Copied",{
+                toast("پیوند کپی شد",{
                   duration: 3000,
                   className: '!bg-gray-300 !rounded-3xl !py-8 !px-5 !justify-center'
                 });
@@ -82,7 +82,7 @@ const MeetingCard = ({
             >
               {/* Copy icon */}
               <Image src="/assets/copy.svg" alt="copy" width={20} height={20} />
-              &nbsp; Copy Link
+              &nbsp; کپی پیوند
             </Button>
           </div>
         )}

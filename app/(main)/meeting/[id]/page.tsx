@@ -22,13 +22,13 @@ const MeetingPage = () => {
 
     if (!call) return (
         <p className="text-center text-3xl font-bold text-white">
-          Call Not Found
+          تماس پیدا نشد
         </p>
     );
 
     const notAllowed = call.type === 'invited' && (!user || !call.state.members.find((m) => m.user.id === user.id));
 
-    if (notAllowed) return <Alert title="You are not allowed to join this meeting" />;
+    if (notAllowed) return <Alert title="شما اجازه ورود به این نشست رو ندارید" />;
 
     return (
         <main className="h-screen w-full">

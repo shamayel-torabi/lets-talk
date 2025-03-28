@@ -46,6 +46,7 @@
 }
 
 @theme {
+  --font-serif: "Vazirmatn";
   --animate-fade-in: fade-in-scale 0.3s ease-out;
   @keyframes fade-in-scale {
     0% {
@@ -60,6 +61,7 @@
 }
 
 :root {
+  --font-vazirmatn: Vazirmatn, sans-serif, Arial, Helvetica;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -147,6 +149,11 @@
     @apply !bg-gray-100 focus-visible:!ring-0 focus-visible:!ring-offset-0 !rounded-4xl 
   }
   
+}
+
+html,
+body{
+  font-family: var(--font-vazirmatn);
 }
 
 
