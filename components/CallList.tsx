@@ -78,7 +78,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                   }
                   date={
                     (meeting as Call).state?.startsAt?.toLocaleString('fa-IR') || // Use start time if available
-                    (meeting as CallRecording).start_time?.toLocaleString('fa-IR') // Use recording start time if available
+                    (meeting as CallRecording).start_time?.toLocaleString() // Use recording start time if available
                   }
                   isPreviousMeeting={type === 'ended'} // Indicate if meeting is previous
                   link={
