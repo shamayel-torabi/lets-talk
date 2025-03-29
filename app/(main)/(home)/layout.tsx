@@ -9,9 +9,9 @@ const HomeLayout = async ({
 ) => {
 
     return (
-        <main className="relative">
+        <main className="flex flex-col h-screen animate-fade-in">
             <NavBar />
-            <section className="flex flex-col flex-1 min-h-screen px-6 pb-6 pt-28 max-md:pb-14 sm:px-14">
+            <section className="flex flex-col flex-1 px-6 pb-6 pt-28 max-md:pb-14 sm:px-14 overflow-y-auto ">
                 <div className="w-full">
                     {children}
                 </div>

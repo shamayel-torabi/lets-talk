@@ -9,7 +9,7 @@ import DateAndTime from "@/components/DateAndTime";
 
 // Import the custom hook useGetCalls to fetch upcoming calls
 import { useGetCalls } from "@/hooks/useGetCalls";
-import DatePicker from "./ui/date-picker";
+import { Card } from "./Card";
 
 
 const StatusBar = () => {
@@ -30,48 +30,34 @@ const StatusBar = () => {
   const startsAt = nearestUpcomingCall?.state?.startsAt;
 
   // Format the start time as a localized date string, or show "No upcoming meetings" if none exist
-  const formattedDate = startsAt ? new Date(startsAt).toLocaleString() : "No upcoming meetings"
+  const formattedDate = startsAt ? new Date(startsAt).toLocaleString('fa-IR') : null;
 
-  // If no upcoming meetings exist, render a section displaying a message and an image
-  if (formattedDate === "No upcoming meetings") {
-    return (
-      <section className="flex flex-col gap-5 text-black items-center md:items-start">
-          {}
-          <h2 className="bg-blue-100 max-w-[273px] rounded-2xl p-4 text-center text-base font-light">
-          هیچ نشستی در پیش رو نیست
-          </h2>
-          {/* Render the DateAndTime component */}
-          <DateAndTime/>
-          {/* Display home image */}
-          <Image 
-            src='/assets/home-image.svg' 
-            width={400} 
-            height={400} 
-            alt="home image" 
-            className="max-md:hidden -ml-16"
-          />
-      </section>
-    )
-  }
-  
   // Render the section when there is an upcoming meeting
   return (
-    <section className="flex flex-col gap-5 text-black items-center md:items-start">
-      {/* Display the upcoming meeting time */}
-      <h2 className="bg-blue-100 max-w-[273px] rounded-2xl p-4 text-center text-base font-light">
-        نشست آتی در:
-        <p className="text-lg font-semibold text-gray-800">{formattedDate}</p>
-      </h2>
-      {/* Render the DateAndTime component */}
-      <DateAndTime/>
-      {/* Display an image with specific styles */}
-      <Image 
-        src='/assets/home-image.svg' 
-        width={400} 
-        height={400} 
-        alt="home image" 
-        className="max-md:hidden -ml-16"
-      />
+    <section className="grid gap-5 w-auto text-gray-800 dark:text-gray-50">
+      <Card className="bg-blue-100 rounded-2xl p-4 text-center text-base font-light">
+        {
+          formattedDate ? (
+            <>
+              <p className="text-lg font-semibold text-gray-800 dark:text-gray-50"> نشست آتی شما </p>
+              <p>{formattedDate}</p>
+            </>
+          ) : (
+            <p className="text-lg font-semibold text-gray-800 dark:text-gray-50">شما هیچ نشست برنامه ریزی شده ای ندارید</p>
+          )
+        }
+      </Card>
+      <Card>
+        <DateAndTime />
+      </Card>
+      <Card>
+        <Image
+          src='/assets/home-image.svg'
+          width={400}
+          height={400}
+          alt="home image"
+        />
+      </Card>
     </section>
   )
 }

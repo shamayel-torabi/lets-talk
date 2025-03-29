@@ -4,14 +4,14 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { differenceInCalendarDays } from "date-fns"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import * as React from "react"
+import React from "react"
 import {
   labelNext,
   labelPrevious,
   useDayPicker,
   type DayPickerProps,
 } from "react-day-picker";
-import { DayPicker } from 'react-day-picker/persian';
+import { PersianDayPicker } from "./persian"
 
 export type CalendarProps = DayPickerProps & {
   /**
@@ -165,7 +165,7 @@ function Calendar({
   const _hiddenClassName = cn("invisible flex-1", props.hiddenClassName)
 
   return (
-    <DayPicker
+    <PersianDayPicker
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       style={{
@@ -348,9 +348,8 @@ function Nav({
         disabled={isPreviousDisabled}
         aria-label={
           navView === "years"
-            ? `Go to the previous ${
-                displayYears.to - displayYears.from + 1
-              } years`
+            ? `Go to the previous ${displayYears.to - displayYears.from + 1
+            } years`
             : labelPrevious(previousMonth)
         }
         onClick={handlePreviousClick}
@@ -485,7 +484,7 @@ function YearGrid({
               className={cn(
                 "h-7 w-full text-sm font-normal text-foreground",
                 displayYears.from + i === new Date().getFullYear() &&
-                  "bg-accent font-medium text-accent-foreground"
+                "bg-accent font-medium text-accent-foreground"
               )}
               variant="ghost"
               onClick={() => {

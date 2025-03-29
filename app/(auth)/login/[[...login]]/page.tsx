@@ -1,7 +1,7 @@
-import SigninForm from "@/components/SigninForm"
+import { SignIn } from "@clerk/nextjs"
 
 const LoginPage = () => {
-    return <SigninForm />
+    return <SignIn />
 }
 
 export default LoginPage

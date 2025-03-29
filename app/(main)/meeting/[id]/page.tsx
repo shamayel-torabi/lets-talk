@@ -28,10 +28,10 @@ const MeetingPage = () => {
 
     const notAllowed = call.type === 'invited' && (!user || !call.state.members.find((m) => m.user.id === user.id));
 
-    if (notAllowed) return <Alert title="شما اجازه ورود به این نشست رو ندارید" />;
+    if (notAllowed) return <Alert title="شما اجازه ورود به این نشست ندارید" />;
 
     return (
-        <main className="h-screen w-full">
+        <main className="h-screen w-full animate-fade-in">
             <StreamCall call={call}>
                 <StreamTheme>
         

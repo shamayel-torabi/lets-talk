@@ -4,9 +4,7 @@ import { useRouter } from "next/navigation"
 import MenuItemCard from "./MenuItemCard"
 import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
-import { Textarea } from "./ui/textarea"
 import { useEffect, useState } from "react"
-import { Input } from "./ui/input"
 import { useUser } from "@clerk/nextjs"
 import Loading from "./Loading"
 import { useStreamVideoClient } from "@stream-io/video-react-sdk"
@@ -40,8 +38,7 @@ const MainMenu = () => {
     try {
       if (!values.dateTime) {
         toast('لطفا زمان و تاریخ را انتخاب کنید', {
-          duration: 3000,
-          className: 'bg-gray-300 rounded-3xl py-8 px-5 justify-center'
+          duration: 3000
         });
         return;
       }
@@ -69,7 +66,6 @@ const MainMenu = () => {
         router.push(`/meeting/${call.id}`);
         toast('برپایی یک نشست', {
           duration: 3000,
-          className: '!bg-gray-300 !rounded-3xl !py-8 !px-5 !justify-center',
         });
       }
 
@@ -109,7 +105,7 @@ const MainMenu = () => {
   const dateValue = `${Year}-${Month}-${Day}T${Hour}:${Minute}`
 
   return (
-    <section className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+    <section className="grid grid-cols-2 gap-2 max-sm:gap-1 max-sm:grid-cols-1">
       <Dialog>
         <DialogTrigger >
           <MenuItemCard
@@ -119,23 +115,23 @@ const MainMenu = () => {
             hoverColor='hover:bg-orange-800'
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
+        <DialogContent className="bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle className='text-3xl font-black leading-relaxed text-center'>
+            <DialogTitle className='text-2xl font-black leading-relaxed text-center'>
               شروع یک نشست آنی 🤝
             </DialogTitle>
             <DialogDescription>
-              <div className="mb-5">
-                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
-                <Textarea
-                  id='details'
-                  placeholder="شرح نشت را وارد کنید..."
-                  rows={4}
-                  onChange={(e) =>
-                    setValues({ ...values, description: e.target.value })
-                  }
-                />
-              </div>
+              <label htmlFor="details" className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
+              <textarea
+                id="details"
+                rows={4}
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="شرح نشت را وارد کنید..."
+                onChange={(e) =>
+                  setValues({ ...values, description: e.target.value })
+                }
+              >
+              </textarea>
               <Button
                 className='mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
                 onClick={() => setMeetingState('Instant')}
@@ -154,22 +150,19 @@ const MainMenu = () => {
             title="پیوستن به یک نشست"
             bgColor="bg-blue-600"
             hoverColor='hover:bg-blue-800'
-
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
+        <DialogContent className="bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle className='text-3xl font-black leading-relaxed text-center mb-5 '>
+            <DialogTitle className='text-2xl font-black leading-relaxed text-center mb-5 '>
               پیوند نشست را وارد کنید
             </DialogTitle>
             <DialogDescription className='flex flex-col gap-3 items-center'>
-              <Input
+              <input
                 type='text'
                 placeholder="پیوند نشست"
-                onChange={(e) => setValues({ ...values, link: e.target.value })}
-                className='inputs'
-              />
-
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e) => setValues({ ...values, link: e.target.value })} />
               <Button
                 className='mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
                 onClick={() => router.push(values.link)}
@@ -190,33 +183,33 @@ const MainMenu = () => {
             hoverColor='hover:bg-blue-800'
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
+        <DialogContent className="bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle className='text-3xl font-black leading-relaxed text-center'>
+            <DialogTitle className='text-2xl font-black leading-relaxed text-center'>
               زمانبندی یک نشست
             </DialogTitle>
             <DialogDescription>
-              <div className="mb-5">
-                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
+              <label htmlFor="details" className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
+              <textarea
+                id="details"
+                rows={4}
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="شرح نشت را وارد کنید..."
+                onChange={(e) =>
+                  setValues({ ...values, description: e.target.value })
+                }
+              >
+              </textarea>
 
-                <Textarea
-                  id="details"
-                  className='inputs'
-                  placeholder="شرح نشست را وارد کنید..."
-                  rows={4}
-                  onChange={(e) =>
-                    setValues({ ...values, description: e.target.value })
-                  }
-                />
-              </div>
-              <div className="flex w-full flex-col gap-2.5">
-                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">
-                  انتخاب تاریخ و زمان نشست
-                </label>
-                <input type="datetime-local" value={dateValue} onChange={(e) => {
-                  setValues({ ...values, dateTime: new Date(e.target.value) })
-                }} />
-              </div>
+              <label htmlFor="date" className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">
+                انتخاب تاریخ و زمان نشست
+              </label>
+              <input
+                id="date"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                type="datetime-local"
+                value={dateValue}
+                onChange={(e) => setValues({ ...values, dateTime: new Date(e.target.value) })} />
               <Button className='!mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
                 onClick={() => setMeetingState('Schedule')}
               >

@@ -17,13 +17,12 @@ const MainLayout = async ({
     }
 
     return (
-        <main className="animate-fade-in">
+        <>
             <StreamProvider>
                 {children}
             </StreamProvider>
-        </main>
+        </>
     )
-
 }
 
 export default MainLayout
