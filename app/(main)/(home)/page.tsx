@@ -1,6 +1,6 @@
 import MainMenu from "@/components/MainMenu"
 import StatusBar from "@/components/StatusBar"
-import { Calendar } from "@/components/ui/calendar"
+import { Calendar } from "@/components/ui/date-picker/calendar"
 import DatePicker from "@/components/ui/date-picker"
 
 const HomePage = () => {
