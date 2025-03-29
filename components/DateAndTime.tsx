@@ -2,20 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-const formatDate = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const dateTimeFormat = new Intl.DateTimeFormat("fa-IR", options);
-
-  const parts = dateTimeFormat.formatToParts(now);
-  const partValues = parts.map((p) => p.value);
-  return ` ${partValues[6]} ${partValues[5]} ${partValues[3]} ${partValues[4]}  ${partValues[2]} ${partValues[0]}`;
-}
-
 const DateAndTime = () => {
   const [time, setTime] = useState(() => {
     const now = new Date();
@@ -23,7 +9,6 @@ const DateAndTime = () => {
   });
 
   const [date, setDate] = useState(() => {
-    const now = new Date();
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
       year: "numeric",
@@ -31,7 +16,7 @@ const DateAndTime = () => {
       day: "numeric",
     };
     const dateTimeFormat = new Intl.DateTimeFormat("fa-IR", options);
-
+    const now = new Date();
     const parts = dateTimeFormat.formatToParts(now);
     const partValues = parts.map((p) => p.value);
     return ` ${partValues[6]} ${partValues[5]} ${partValues[3]} ${partValues[4]}  ${partValues[2]} ${partValues[0]}`;
