@@ -1,4 +1,3 @@
-import "react-datepicker/dist/react-datepicker.css";
 import "@stream-io/video-react-sdk/dist/css/styles.css";
 
 import { Toaster } from "@/components/ui/sonner"
@@ -19,13 +18,15 @@ export const metadata: Metadata = {
   description: "برنامه نشست ویدئویی",
 };
 
+import { faIR } from '@/constants/fa-IR'
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={faIR}>
       <html lang="fa" dir="rtl">
         <body className={`${vazirmatn.className}} antialiased`}>
           {children}

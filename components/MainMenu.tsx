@@ -7,7 +7,6 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Textarea } from "./ui/textarea"
 import { useEffect, useState } from "react"
 import { Input } from "./ui/input"
-import DatePicker from "react-datepicker";
 import { useUser } from "@clerk/nextjs"
 import Loading from "./Loading"
 import { useStreamVideoClient } from "@stream-io/video-react-sdk"
@@ -19,6 +18,13 @@ const initialValues = {
   description: '',
   link: '',
 };
+
+const zeroPrefix = (a: number) => {
+  if (a < 10)
+    return `0${a}`
+  else
+    return `${a}`
+}
 
 const MainMenu = () => {
   const { user } = useUser()
@@ -95,10 +101,16 @@ const MainMenu = () => {
 
   if (!client || !user) return <Loading />;
 
+  const Year = values.dateTime.getFullYear();
+  const Month = zeroPrefix(values.dateTime.getMonth() + 1);
+  const Day = zeroPrefix(values.dateTime.getDate());
+  const Hour = zeroPrefix(values.dateTime.getHours());
+  const Minute = zeroPrefix(values.dateTime.getMinutes());
+  const dateValue = `${Year}-${Month}-${Day}T${Hour}:${Minute}`
 
   return (
     <section className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
-      <Dialog >
+      <Dialog>
         <DialogTrigger >
           <MenuItemCard
             img="/assets/new-meeting.svg"
@@ -107,25 +119,23 @@ const MainMenu = () => {
             hoverColor='hover:bg-orange-800'
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 text-gray-900 rounded-3xl" >
-
+        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle
-              className='text-3xl font-black leading-relaxed text-center '
-            >
+            <DialogTitle className='text-3xl font-black leading-relaxed text-center'>
               شروع یک نشست آنی 🤝
             </DialogTitle>
-            <DialogDescription className='flex flex-col items-center '>
-
-              افزودن شرح نشست
-              <Textarea
-                className="inputs p-5"
-                rows={4}
-                onChange={(e) =>
-                  setValues({ ...values, description: e.target.value })
-                }
-              />
-
+            <DialogDescription>
+              <div className="mb-5">
+                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
+                <Textarea
+                  id='details'
+                  placeholder="شرح نشت را وارد کنید..."
+                  rows={4}
+                  onChange={(e) =>
+                    setValues({ ...values, description: e.target.value })
+                  }
+                />
+              </div>
               <Button
                 className='mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
                 onClick={() => setMeetingState('Instant')}
@@ -147,12 +157,9 @@ const MainMenu = () => {
 
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 text-gray-900 rounded-3xl" >
-
+        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle
-              className='text-3xl font-black leading-relaxed text-center mb-5 '
-            >
+            <DialogTitle className='text-3xl font-black leading-relaxed text-center mb-5 '>
               پیوند نشست را وارد کنید
             </DialogTitle>
             <DialogDescription className='flex flex-col gap-3 items-center'>
@@ -174,56 +181,48 @@ const MainMenu = () => {
         </DialogContent>
       </Dialog>
 
-
-      <Dialog >
+      <Dialog>
         <DialogTrigger>
           <MenuItemCard
             img="/assets/calendar.svg"
-            title="زمانبندی نشست"
+            title="زمانبندی نشست آتی"
             bgColor="bg-blue-600"
             hoverColor='hover:bg-blue-800'
           />
         </DialogTrigger>
-        <DialogContent className=" bg-gray-200 px-16 py-10 text-gray-900 !rounded-3xl" >
-
+        <DialogContent className=" bg-gray-200 px-16 py-10 rounded-2xl">
           <DialogHeader>
-            <DialogTitle
-              className='text-3xl font-black leading-relaxed text-center mb-5 '
-            >
-              زمانبندی نشست
+            <DialogTitle className='text-3xl font-black leading-relaxed text-center'>
+              زمانبندی یک نشست
             </DialogTitle>
-            <DialogDescription className='flex flex-col gap-3'>
+            <DialogDescription>
+              <div className="mb-5">
+                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">شرح نشست</label>
 
-              شرح نشست وارد کنید
-              <Textarea
-                className="inputs p-5"
-                rows={4}
-                onChange={(e) =>
-                  setValues({ ...values, description: e.target.value })
-                }
-              />
-
+                <Textarea
+                  id="details"
+                  className='inputs'
+                  placeholder="شرح نشست را وارد کنید..."
+                  rows={4}
+                  onChange={(e) =>
+                    setValues({ ...values, description: e.target.value })
+                  }
+                />
+              </div>
+              <div className="flex w-full flex-col gap-2.5">
+                <label className="block my-2 text-left rtl:text-right text-base font-normal text-gray-900 dark:text-white">
+                  انتخاب تاریخ و زمان نشست
+                </label>
+                <input type="datetime-local" value={dateValue} onChange={(e) => {
+                  setValues({ ...values, dateTime: new Date(e.target.value) })
+                }} />
+              </div>
+              <Button className='!mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
+                onClick={() => setMeetingState('Schedule')}
+              >
+                ارسال
+              </Button>
             </DialogDescription>
-            <div className="flex w-full flex-col gap-2.5">
-              <label className="text-base font-normal leading-[22.4px] text-sky-2">
-                انتخاب تاریخ و زمان نشست
-              </label>
-              <DatePicker
-                preventOpenOnFocus
-                selected={values.dateTime}
-                onChange={(date) => setValues({ ...values, dateTime: date! })}
-                showTimeSelect
-                timeIntervals={15}
-                timeCaption="time"
-                dateFormat="MMMM d, yyyy h:mm aa"
-                className="inputs w-full rounded p-2 focus:outline-hidden focus:border-blue-500 focus:ring-3 focus:ring-blue-200  "
-              />
-            </div>
-            <Button className='!mt-5 font-extrabold text-lg text-white rounded-xl bg-blue-700 py-5 px-10 hover:bg-blue-900 hover:scale-110 transition ease-in-out delay-75 duration-700 hover:-translate-y-1 cursor-pointer'
-              onClick={() => setMeetingState('Schedule')}
-            >
-              ارسال
-            </Button>
           </DialogHeader>
         </DialogContent>
       </Dialog>

@@ -74,7 +74,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                   title={
                     (meeting as Call).state?.custom?.description || // Use custom description if available
                     (meeting as CallRecording).filename?.substring(0, 20) || // Use recording filename if available
-                    'No Description' // Default title
+                    'بدون شرح' // Default title
                   }
                   date={
                     (meeting as Call).state?.startsAt?.toLocaleString('fa-IR') || // Use start time if available

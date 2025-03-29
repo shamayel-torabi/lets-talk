@@ -9,6 +9,7 @@ import DateAndTime from "@/components/DateAndTime";
 
 // Import the custom hook useGetCalls to fetch upcoming calls
 import { useGetCalls } from "@/hooks/useGetCalls";
+import DatePicker from "./ui/date-picker";
 
 
 const StatusBar = () => {
@@ -37,7 +38,7 @@ const StatusBar = () => {
       <section className="flex flex-col gap-5 text-black items-center md:items-start">
           {}
           <h2 className="bg-blue-100 max-w-[273px] rounded-2xl p-4 text-center text-base font-light">
-          هیچ نشست در پیش نیست
+          هیچ نشستی در پیش رو نیست
           </h2>
           {/* Render the DateAndTime component */}
           <DateAndTime/>

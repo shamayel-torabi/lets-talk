@@ -17,7 +17,7 @@ const DateAndTime = () => {
     useEffect(() => {
         const intervalId = setInterval(() => {
           const now = new Date();
-          setTime(now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', second: '2-digit'}));
+          setTime(now.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit'}));
           const options: Intl.DateTimeFormatOptions = {
             weekday: "long",
             year: "numeric",

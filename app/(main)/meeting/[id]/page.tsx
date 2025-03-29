@@ -22,7 +22,7 @@ const MeetingPage = () => {
 
     if (!call) return (
         <p className="text-center text-3xl font-bold text-white">
-          تماس پیدا نشد
+          نشست پیدا نشد
         </p>
     );
 
