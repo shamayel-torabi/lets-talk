@@ -5,7 +5,7 @@ import { Calendar } from "@/components/ui/date-picker/calendar"
 
 const HomePage = () => {
     return (
-        <div className="grid grid-cols-1 gap-5 md:gap-10 lg:grid-cols-3 animate-fade-in">
+        <section className="grid grid-cols-1 gap-5 md:gap-10 lg:grid-cols-3 animate-fade-in">
             <Card>
                 <StatusBar />
             </Card>
@@ -15,7 +15,7 @@ const HomePage = () => {
             <Card className="h-full grid grid-cols-1 justify-items-center content-center">
                 <Calendar mode="single" selected={new Date()} />
             </Card>
-        </div>
+        </section>
     )
 }
 
