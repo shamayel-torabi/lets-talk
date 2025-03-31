@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs"
 
 const LoginPage = () => {
-    return <SignIn />
+    return <SignIn withSignUp={false} />
 }
 
 export default LoginPage
